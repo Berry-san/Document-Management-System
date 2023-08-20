@@ -2,6 +2,7 @@ import folders from '../assets/svgs/folders.svg'
 import networking from '../assets/svgs/networking.svg'
 import file from '../assets/svgs/file.svg'
 import man from '../assets/svgs/man.svg'
+import { Link } from 'react-router-dom'
 
 const dashboard = () => {
   return (
@@ -21,7 +22,7 @@ const dashboard = () => {
                 </p>
               </div>
             </div>
-            <a href>
+            <Link to="/uploadDocument">
               <div className="flex justify-between p-5 text-xs text-white bg-black_color hover:scale-105">
                 <span className="font-semibold">View all Users</span>
                 <span className>
@@ -38,7 +39,7 @@ const dashboard = () => {
                   </svg>
                 </span>
               </div>
-            </a>
+            </Link>
           </div>
           <div className="overflow-hidden rounded-md">
             <div className="flex px-5 py-8 bg-green/50">
