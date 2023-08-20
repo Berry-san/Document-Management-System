@@ -11,7 +11,7 @@ const UploadDocument = () => {
   return (
     <>
       {/* pb-7 sm:pb-5 lg:pb-5 */}
-      <div className="flex items-center justify-between mb-5">
+      <div className="flex items-center justify-between w-full mb-5">
         <div className="flex items-center space-x-5">
           <img
             src={back}
@@ -32,7 +32,7 @@ const UploadDocument = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-12 pb-7">
-        <div className="col-span-5">
+        <div className="col-span-7 md:col-span-5">
           <div className="flex items-center justify-center w-full">
             <label
               htmlFor="dropzone-file"
