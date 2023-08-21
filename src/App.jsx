@@ -25,8 +25,6 @@ function App() {
   const handleLogin = () => {
     // Simulate a successful login
     setIsLoggedIn(true)
-    console.log(isLoggedIn)
-    console.log()
   }
 
   return (
