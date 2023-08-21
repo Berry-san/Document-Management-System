@@ -59,7 +59,7 @@ const DocumentOwners = () => {
             <tr className="bg-[#f4f4f4] font-medium text-black border-b border-slate-400">
               <td className="py-3 pl-4 xl:pl-8">ownerName</td>
               <td className="px-1 py-3">department</td>
-              <td className="py-3 pr-5 line-clamp-1">
+              <td className="py-3 pr-5 truncate">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Pariatur qui necessitatibus rem, id adipisci animi repellat
                 iusto? Aut, dolores doloribus.

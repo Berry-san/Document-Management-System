@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 // import { FcBullish } from 'react-icons/fa'
 import logo from '../../assets/svgs/logo.svg'
+import hamburger from '../../assets/svgs/hamburger.svg'
 import { Link } from 'react-router-dom'
 import data from '../lib/constants/navigation'
 // import classNames from 'classnames'

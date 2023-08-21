@@ -18,8 +18,8 @@ const Dashboard = ({ onLogin }) => {
               <div>
                 <img src={man} />
               </div>
-              <div className="ps-7">
-                <p className="text-sm font-bold">Document Owners</p>
+              <div className="truncate ps-7">
+                <p className="text-sm font-bold truncate">Document Owners</p>
                 <p className="pt-1 text-sm font-medium text-black_color">
                   Count: 32
                 </p>
@@ -39,8 +39,8 @@ const Dashboard = ({ onLogin }) => {
               <div>
                 <img src={folders} />
               </div>
-              <div className="ps-7">
-                <p className="text-sm font-bold">Documents</p>
+              <div className="truncate ps-7">
+                <p className="text-sm font-bold truncate">Documents</p>
                 <p className="pt-1 text-sm font-medium text-black_color">
                   Count: 128
                 </p>
@@ -60,8 +60,8 @@ const Dashboard = ({ onLogin }) => {
               <div>
                 <img src={networking} />
               </div>
-              <div className="ps-7">
-                <p className="text-sm font-bold">Departments</p>
+              <div className="truncate ps-7">
+                <p className="text-sm font-bold truncate">Departments</p>
                 <p className="pt-1 text-sm font-medium text-black_color">
                   Count: 6
                 </p>
@@ -81,11 +81,11 @@ const Dashboard = ({ onLogin }) => {
         <div className="grid grid-cols-1 md:grid-cols-12 pt-[40px]">
           <div className="flex col-span-7 rounded bg-green/50 pe-5">
             <div className="flex-none hidden md:block lg:block">
-              <img className="mix-blend-multiply" src={file} />
+              <img className="" src={file} />
             </div>
             <div className="flex-grow py-8 text-center md:py-14 lg:py-14">
               <p className="text-sm font-bold">Upload a new document</p>
-              <p className="font-semibold text-xs opacity-50 pt-2 tracking-[0.6px]">
+              <p className="font-semibold text-xs pt-2 tracking-[0.6px]">
                 You'll need the name of the document owner, department, phone
                 number and email address.
               </p>
