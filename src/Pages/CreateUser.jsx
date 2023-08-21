@@ -85,7 +85,7 @@ const CreateUser = () => {
           />
         </div>
       </form>
-      <button className="text-black mt-4 px-4 py-3 font-semibold rounded-md bg-[#4ECCA3]">
+      <button className="px-4 py-3 text-xs font-semibold rounded bg-green text-black_color mt-5">
         Create User
       </button>
     </div>

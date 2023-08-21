@@ -4,6 +4,7 @@ import trash from '../assets/svgs/trash.svg'
 import Search from '../components/Search/Search'
 import playGif from '../assets/svgs/play.gif'
 import back from '../assets/svgs/back.svg'
+import { Link } from 'react-router-dom'
 
 const documentOwners = () => {
   return (
@@ -16,10 +17,10 @@ const documentOwners = () => {
 
         <div className="flex items-center space-x-10 w-72">
           <Search placeholder="Search..." />
-          <a href>
+          <Link to="/uploadDocument">
             {' '}
-            <img src={playGif} alt srcSet />
-          </a>
+            <img src={playGif} />
+          </Link>
         </div>
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

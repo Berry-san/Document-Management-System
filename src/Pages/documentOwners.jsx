@@ -5,6 +5,7 @@ import Search from '../components/Search/Search'
 import playGif from '../assets/svgs/play.gif'
 import back from '../assets/svgs/back.svg'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const DocumentOwners = () => {
   const navigate = useNavigate()
@@ -26,10 +27,10 @@ const DocumentOwners = () => {
 
         <div className="flex items-center space-x-10 w-72">
           <Search placeholder="Search..." />
-          <a href>
+          <Link to="/uploadDocument">
             {' '}
-            <img src={playGif} alt srcSet />
-          </a>
+            <img src={playGif} />
+          </Link>
         </div>
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

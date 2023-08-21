@@ -1,10 +1,13 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unescaped-entities */
 import folders from '../assets/svgs/folders.svg'
 import networking from '../assets/svgs/networking.svg'
 import file from '../assets/svgs/file.svg'
 import man from '../assets/svgs/man.svg'
+import rightArrow from '../assets/svgs/rightArrow.svg'
 import { Link } from 'react-router-dom'
 
-const dashboard = () => {
+const Dashboard = ({ onLogin }) => {
   return (
     <>
       <div>
@@ -12,7 +15,7 @@ const dashboard = () => {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <div className="overflow-hidden rounded-md">
             <div className="flex px-5 py-8 bg-green/50">
-              <div className>
+              <div>
                 <img src={man} />
               </div>
               <div className="ps-7">
@@ -22,28 +25,18 @@ const dashboard = () => {
                 </p>
               </div>
             </div>
-            <Link to="/uploadDocument">
+            <Link to="uploadDocument">
               <div className="flex justify-between p-5 text-xs text-white bg-black_color hover:scale-105">
                 <span className="font-semibold">View all Users</span>
-                <span className>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                  >
-                    <path
-                      d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                      fill="rgba(255,255,255,1)"
-                    ></path>
-                  </svg>
+                <span>
+                  <img src={rightArrow} alt="" />
                 </span>
               </div>
             </Link>
           </div>
           <div className="overflow-hidden rounded-md">
             <div className="flex px-5 py-8 bg-green/50">
-              <div className>
+              <div>
                 <img src={folders} />
               </div>
               <div className="ps-7">
@@ -53,28 +46,18 @@ const dashboard = () => {
                 </p>
               </div>
             </div>
-            <a href>
+            <Link to="uploadDocument">
               <div className="flex justify-between p-5 text-xs text-white bg-black_color hover:scale-105">
                 <span className="font-semibold">View all documents</span>
-                <span className>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                  >
-                    <path
-                      d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                      fill="rgba(255,255,255,1)"
-                    ></path>
-                  </svg>
+                <span>
+                  <img src={rightArrow} alt="" />
                 </span>
               </div>
-            </a>
+            </Link>
           </div>
           <div className="overflow-hidden rounded-md">
             <div className="flex px-5 py-8 bg-green/50">
-              <div className>
+              <div>
                 <img src={networking} />
               </div>
               <div className="ps-7">
@@ -84,24 +67,14 @@ const dashboard = () => {
                 </p>
               </div>
             </div>
-            <a href>
+            <Link to="uploadDocument">
               <div className="flex justify-between p-5 text-xs text-white bg-black_color hover:scale-105">
                 <span className="font-semibold">View all departments</span>
-                <span className>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                  >
-                    <path
-                      d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                      fill="rgba(255,255,255,1)"
-                    ></path>
-                  </svg>
+                <span>
+                  <img src={rightArrow} alt="" />
                 </span>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -116,17 +89,18 @@ const dashboard = () => {
                 You'll need the name of the document owner, department, phone
                 number and email address.
               </p>
-              <a href>
+              <Link to="uploadDocument">
                 <button className="bg-black_color text-dull_white mt-7 px-4 py-2 rounded-md text-xs tracking-[0.6px] hover:bg-green hover:text-black hover:font-semibold">
                   Upload Document
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </div>
+      <button onClick={onLogin}>Login</button>
     </>
   )
 }
 
-export default dashboard
+export default Dashboard

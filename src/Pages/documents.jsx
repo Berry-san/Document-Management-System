@@ -3,6 +3,7 @@ import folders from '../assets/svgs/folders.svg'
 import playGif from '../assets/svgs/play.gif'
 import back from '../assets/svgs/back.svg'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Documents = () => {
   const navigate = useNavigate()
@@ -23,46 +24,46 @@ const Documents = () => {
         </div>
         <div className="">
           {' '}
-          <a href>
+          <Link to="/uploadDocument">
             {' '}
-            <img src={playGif} alt srcSet />
-          </a>
+            <img src={playGif} />
+          </Link>
         </div>
       </div>
       <div>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
-          <a href className="hover:scale-105">
+          <Link to="/uploadDocument" className="hover:scale-105">
             <div className="flex-shrink py-8 text-center rounded bg-dull_white">
               <img src={folders} className="mx-auto" />
               <div className="text-dark_color text-sm pt-2 font-semibold tracking-[0.7px] truncate px-3">
                 Vouchers
               </div>
             </div>
-          </a>
-          <a href className="hover:scale-105">
+          </Link>
+          <Link to="/uploadDocument" className="hover:scale-105">
             <div className="flex-shrink py-8 text-center rounded bg-dull_white">
               <img src={folders} className="mx-auto" />
               <div className="text-dark_color text-sm pt-2 font-semibold tracking-[0.7px] truncate px-3">
                 Receipts
               </div>
             </div>
-          </a>
-          <a href className="hover:scale-105">
+          </Link>
+          <Link to="/uploadDocument" className="hover:scale-105">
             <div className="flex-shrink py-8 text-center rounded bg-dull_white">
               <img src={folders} className="mx-auto" />
               <div className="text-dark_color text-sm pt-2 font-semibold tracking-[0.7px] truncate px-3">
                 Auto Vouchers
               </div>
             </div>
-          </a>
-          <a href className="hover:scale-105">
+          </Link>
+          <Link to="/uploadDocument" className="hover:scale-105">
             <div className="flex-shrink py-8 text-center rounded bg-dull_white">
               <img src={folders} className="mx-auto" />
               <div className="text-dark_color text-sm pt-2 font-semibold tracking-[0.7px] truncate px-3">
                 Power Receipts
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </>

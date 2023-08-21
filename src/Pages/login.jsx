@@ -1,40 +1,26 @@
-const login = () => {
+/* eslint-disable react/prop-types */
+import { Link } from 'react-router-dom'
+function Login({ onLogin }) {
+  const handleLoginClick = () => {
+    // Simulate a login action
+    onLogin()
+  }
+
   return (
-    <>
-      <div>
-        <img src="" alt="" />
-        <h3></h3>
-      </div>
-      <div>
-        <form
-          action=""
-          className="grid grid-cols-1 text-left md:grid-cols-2 xl:grid-cols-2 gap-x-5 gap-y-5 "
-        >
-          <div>
-            <label htmlFor="" className="font-semibold text-md">
-              First Name:
-            </label>
-            <input
-              type="text"
-              className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
-            />
-          </div>
-          <div>
-            <label htmlFor="" className="font-semibold text-md">
-              Last Name:
-            </label>
-            <input
-              type="text"
-              className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
-            />
-          </div>
-        </form>
-        <button className="text-black mt-4 px-4 py-3 font-semibold rounded-md bg-[#4ECCA3]">
-          Create User
+    <div>
+      <h2>Login Page</h2>
+      <Link to="/signUp">
+        <button className="px-4 py-3 bg-green" onClick={handleLoginClick}>
+          Sign Up
         </button>
-      </div>
-    </>
+      </Link>
+      <Link to="/layout">
+        <button className="px-4 py-3 bg-green" onClick={handleLoginClick}>
+          Login
+        </button>
+      </Link>
+    </div>
   )
 }
 
-export default login
+export default Login

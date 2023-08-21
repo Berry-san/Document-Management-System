@@ -25,9 +25,9 @@ const UploadDocument = () => {
         </div>
         <div className="">
           {' '}
-          <a href>
+          <a>
             {' '}
-            <img src={playGif} alt srcSet />
+            <img src={playGif} />
           </a>
         </div>
       </div>

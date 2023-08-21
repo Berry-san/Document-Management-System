@@ -12,37 +12,37 @@ const DASHBOARD_SIDEBAR_LINKS = [
   {
     key: 'dashboard',
     label: 'Dashboard',
-    path: '/',
+    path: './',
     icon: dashboard,
   },
   {
     key: 'createUser',
     label: 'Create User',
-    path: '/createUser',
+    path: 'createUser',
     icon: user,
   },
   {
     key: 'uploadDocument',
     label: 'Upload Document',
-    path: '/uploadDocument',
+    path: 'uploadDocument',
     icon: upload,
   },
   {
     key: 'documentOwners',
     label: 'Document Owners',
-    path: '/documentOwners',
+    path: 'documentOwners',
     icon: users,
   },
   {
     key: 'departments',
     label: 'Departments',
-    path: '/departments',
+    path: 'departments',
     icon: departments,
   },
   {
     key: 'documents',
     label: 'Documents',
-    path: '/documents',
+    path: 'documents',
     icon: documents,
   },
 ]
