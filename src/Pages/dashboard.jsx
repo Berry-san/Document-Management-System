@@ -98,7 +98,6 @@ const Dashboard = ({ onLogin }) => {
           </div>
         </div>
       </div>
-      <button onClick={onLogin}>Login</button>
     </>
   )
 }

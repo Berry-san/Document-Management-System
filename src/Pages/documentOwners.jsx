@@ -28,18 +28,17 @@ const DocumentOwners = () => {
         <div className="flex items-center space-x-10 w-72">
           <Search placeholder="Search..." />
           <Link to="/uploadDocument">
-            {' '}
             <img src={playGif} />
           </Link>
         </div>
       </div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="overflow-x-scroll shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 table-auto">
-          <thead className="p-5 text-md font-bold text-gray-700  bg-[#4ECCA3] rounded-lg">
+          <thead className="p-5 font-bold text-gray-700 rounded-lg text-md bg-green">
             <tr>
               <th className="py-3 pl-8">Owner</th>
               <th className="px-1 py-3">Document name</th>
-              <th className=" pr-5 py-3 w-[30%]">Purpose</th>
+              <th className="py-3 pr-5 ">Purpose</th>
               <th className="px-1 py-3">Date</th>
               <th className="px-6 py-3">Action</th>
             </tr>

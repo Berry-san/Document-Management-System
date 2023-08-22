@@ -1,63 +1,155 @@
 /* eslint-disable react/prop-types */
-// import { FcBullish } from 'react-icons/fa'
 import logo from '../../assets/svgs/logo.svg'
-import hamburger from '../../assets/svgs/hamburger.svg'
-import { Link } from 'react-router-dom'
-import data from '../lib/constants/navigation'
-// import classNames from 'classnames'
+import leftArrow from '../../assets/svgs/leftArrow.svg'
+import dashboard from '../../assets/svgs/dashboard.svg'
+import user from '../../assets/svgs/user.svg'
+import users from '../../assets/svgs/users.svg'
+import upload from '../../assets/svgs/upload.svg'
+import departments from '../../assets/svgs/departments.svg'
+import documents from '../../assets/svgs/documents.svg'
+import { useEffect, useRef, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
-// const linkClasses =
-//   'flex items-center gap-x-2 p-3 hover:bg-neutral-700 hover:no-underline flex items-center gap-2 p-3 hover:bg-neutral-700 hover:no-underline active:bg-neutral-700 rounded-md text-base'
-const Sidebar = () => {
+const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
+  const trigger = useRef(null)
+  const sidebar = useRef(null)
+
+  const storedSidebarExpanded = localStorage.getItem('sidebar-expanded')
+  const [sidebarExpanded, setSidebarExpanded] = useState(
+    storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true'
+  )
+
+  useEffect(() => {
+    const clickHandler = ({ target }) => {
+      if (!sidebar.current || !trigger.current) return
+      if (
+        !sidebarOpen ||
+        sidebar.current.contains(target) ||
+        trigger.current.contains(target)
+      )
+        return
+      setSidebarOpen(false)
+    }
+    document.addEventListener('click', clickHandler)
+    return () => document.removeEventListener('click', clickHandler)
+  }, [sidebarOpen, setSidebarOpen])
+
+  useEffect(() => {
+    const keyHandler = ({ keyCode }) => {
+      if (!sidebarOpen || keyCode !== 27) return
+      setSidebarOpen(false)
+    }
+    document.addEventListener('keydown', keyHandler)
+    return () => document.removeEventListener('keydown', keyHandler)
+  }, [sidebarOpen, setSidebarOpen])
+
+  useEffect(() => {
+    localStorage.setItem('sidebar-expanded', sidebarExpanded.toString())
+    if (sidebarExpanded) {
+      document.querySelector('body')?.classList.add('sidebar-expanded')
+    } else {
+      document.querySelector('body')?.classList.remove('sidebar-expanded')
+    }
+  }, [sidebarExpanded])
+
   return (
-    <div className="bg-[#4ECCA3] w-72 p-2 text-neutral-700 flex flex-col border-r border-[#393E46]">
-      <div className="flex items-center gap-2 pb-5 border-b border-[#393E46]">
-        <img src={logo} alt="logo" />
-        <span className="font-bold text-neutral-700 ">
-          DOCUMENT MANAGEMENT SYSTEM
-        </span>
-      </div>
+    <aside
+      ref={sidebar}
+      className={`absolute left-0 top-0 z-40 flex h-screen w-80 flex-col overflow-y-hidden bg-green  duration-300 ease-linear  lg:static lg:translate-x-0 ${
+        sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      }`}
+    >
+      {/* SIDEBAR HEADER */}
+      <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5 border-b border-[#393E46]">
+        <NavLink to="/">
+          <div className="flex items- w-full gap-2 pt-3 pb-3 ">
+            <img src={logo} alt="logo" />
+            <span className="font-bold text-neutral-700 ">
+              DOCUMENT MANAGEMENT SYSTEM
+            </span>
+          </div>
+        </NavLink>
 
-      <div className="flex-1 flex flex-col py-8 gap-0.5 pb-32 border-b border-[#393E46] border-dashed">
-        {data.map((link) => (
-          <SidebarLinks key={link.key} link={link} />
-        ))}
+        <button
+          ref={trigger}
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          aria-controls="sidebar"
+          aria-expanded={sidebarOpen}
+          className="block lg:hidden"
+        >
+          <img src={leftArrow} alt="" />
+        </button>
       </div>
-      <div>
-        <div className="flex gap-3 px-6 my-20">
-          <div className="bg-black_color text-dull_white text-sm font-semibold p-3 rounded-[50px] tracking-[0.7px]">
-            BM
+      {/* SIDEBAR HEADER */}
+
+      <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
+        {/* Sidebar Menu */}
+        <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
+          {/* Menu Group */}
+          <div>
+            <ul className="mb-6 flex flex-col gap-2">
+              {/* Menu Item Dashboard */}
+
+              {/* Menu Item Dashboard */}
+              <li>
+                <NavLink
+                  to="./"
+                  className={`group relative flex items-center gap-2.5 font-semibold rounded-sm py-2 px-4 text-dark_color duration-300 ease-in-out`}
+                >
+                  <img src={dashboard} className="w-6 h-6" alt="" /> Dashboard
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="createUser"
+                  className={`group relative flex items-center gap-2.5 font-semibold rounded-sm py-2 px-4 text-dark_color duration-300 ease-in-out`}
+                >
+                  <img src={user} alt="" /> Create User
+                </NavLink>
+              </li>
+
+              {/* Menu Item Calendar */}
+              <li>
+                <NavLink
+                  to="uploadDocument"
+                  className={`group relative flex items-center gap-2.5 font-semibold rounded-sm py-2 px-4 text-dark_color duration-300 ease-in-out`}
+                >
+                  <img src={upload} alt="" /> Upload new Document
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="documentOwners"
+                  className={`group relative flex items-center gap-2.5 font-semibold rounded-sm py-2 px-4 text-dark_color duration-300 ease-in-out `}
+                >
+                  <img src={users} alt="" /> Document Owners
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="departments"
+                  className={`group relative flex items-center gap-2.5 font-semibold rounded-sm py-2 px-4 text-dark_color duration-300 ease-in-out `}
+                >
+                  <img src={departments} alt="" />
+                  Departments
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="documents"
+                  className={`group relative flex items-center gap-2.5 font-semibold rounded-sm py-2 px-4 text-dark_color duration-300 ease-in-out`}
+                >
+                  <img src={documents} alt="" />
+                  Documents
+                </NavLink>
+              </li>
+            </ul>
           </div>
-          <div className="my-auto">
-            <p className="text-sm font-semibold tracking-[0.7px]">Bob Marley</p>
-            <p className="text-xs font-medium text-black_color">
-              Monday, July 16 2023
-            </p>
-          </div>
-        </div>
+        </nav>
       </div>
-    </div>
+    </aside>
   )
 }
 
 export default Sidebar
-
-function SidebarLinks({ link }) {
-  // const { pathname } = useLocation()
-  return (
-    <Link
-      to={link.path}
-      className="flex items-center p-3 font-bold gap-x-2 hover:no-underline"
-      // className={classNames(
-      //   pathname === link.path
-      //     ? ' text-neutral-100 bg-neutral-700'
-      //     : 'text-white ',
-      //   linkClasses
-
-      // )}
-    >
-      <img src={link.icon} className="w-6 h-6" alt="" />
-      {link.label}
-    </Link>
-  )
-}
