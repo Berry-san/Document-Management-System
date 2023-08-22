@@ -1,14 +1,9 @@
 /* eslint-disable react/prop-types */
 import logo from '../../assets/svgs/logo.svg'
 import leftArrow from '../../assets/svgs/leftArrow.svg'
-import dashboard from '../../assets/svgs/dashboard.svg'
-import user from '../../assets/svgs/user.svg'
-import users from '../../assets/svgs/users.svg'
-import upload from '../../assets/svgs/upload.svg'
-import departments from '../../assets/svgs/departments.svg'
-import documents from '../../assets/svgs/documents.svg'
 import { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import data from '../lib/constants/navigation'
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const trigger = useRef(null)
@@ -55,13 +50,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-40 flex h-screen w-80 flex-col overflow-y-hidden bg-green  duration-300 ease-linear  lg:static lg:translate-x-0 ${
+      className={`absolute left-0 top-0 z-40 flex h-screen w-80 flex-col overflow-y-hidden bg-green px-2 duration-300 ease-linear  lg:static lg:translate-x-0 ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
       }`}
     >
       {/* SIDEBAR HEADER */}
-      <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5 border-b border-[#393E46]">
-        <NavLink to="/">
+      <div className="flex items-center justify-between gap-2 py-5.5 lg:py-6.5 border-b border-black_color">
+        <NavLink to="./">
           <div className="flex items- w-full gap-2 pt-3 pb-3 ">
             <img src={logo} alt="logo" />
             <span className="font-bold text-neutral-700 ">
@@ -82,73 +77,55 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       </div>
       {/* SIDEBAR HEADER */}
 
-      <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
+      <div className="no-scrollbar flex-1 flex flex-col overflow-y-auto duration-300 ease-linear">
         {/* Sidebar Menu */}
-        <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
+        <nav className="mt-5 py-6 px-4 lg:mt-5 lg:pb-10 lg:px-6 border-b border-dashed border-black_color">
           {/* Menu Group */}
           <div>
             <ul className="mb-6 flex flex-col gap-2">
               {/* Menu Item Dashboard */}
 
               {/* Menu Item Dashboard */}
-              <li>
-                <NavLink
-                  to="./"
-                  className={`group relative flex items-center gap-2.5 font-semibold rounded-sm py-2 px-4 text-dark_color duration-300 ease-in-out`}
-                >
-                  <img src={dashboard} className="w-6 h-6" alt="" /> Dashboard
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="createUser"
-                  className={`group relative flex items-center gap-2.5 font-semibold rounded-sm py-2 px-4 text-dark_color duration-300 ease-in-out`}
-                >
-                  <img src={user} alt="" /> Create User
-                </NavLink>
-              </li>
-
-              {/* Menu Item Calendar */}
-              <li>
-                <NavLink
-                  to="uploadDocument"
-                  className={`group relative flex items-center gap-2.5 font-semibold rounded-sm py-2 px-4 text-dark_color duration-300 ease-in-out`}
-                >
-                  <img src={upload} alt="" /> Upload new Document
-                </NavLink>
-              </li>
-
-              <li>
-                <NavLink
-                  to="documentOwners"
-                  className={`group relative flex items-center gap-2.5 font-semibold rounded-sm py-2 px-4 text-dark_color duration-300 ease-in-out `}
-                >
-                  <img src={users} alt="" /> Document Owners
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="departments"
-                  className={`group relative flex items-center gap-2.5 font-semibold rounded-sm py-2 px-4 text-dark_color duration-300 ease-in-out `}
-                >
-                  <img src={departments} alt="" />
-                  Departments
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="documents"
-                  className={`group relative flex items-center gap-2.5 font-semibold rounded-sm py-2 px-4 text-dark_color duration-300 ease-in-out`}
-                >
-                  <img src={documents} alt="" />
-                  Documents
-                </NavLink>
-              </li>
+              {data.map((link) => (
+                <SidebarLinks
+                  key={link.key}
+                  link={link}
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                />
+              ))}
             </ul>
           </div>
         </nav>
+
+        <div className="flex-1 flex items-center justify-start space-x-5 px-4 lg:px-6">
+          <div className="bg-black_color text-dull_white text-sm font-semibold p-3 rounded-[50px] tracking-[0.7px]">
+            BM
+          </div>
+          <div className="my-auto">
+            <p className="text-sm font-semibold tracking-[0.7px]">Bob Marley</p>
+            <p className="text-xs text-black_color font-medium">
+              Monday, July 16 2023
+            </p>
+          </div>
+        </div>
       </div>
     </aside>
+  )
+}
+
+function SidebarLinks({ link, onClick }) {
+  // const { pathname } = useLocation()
+  return (
+    <li>
+      <NavLink
+        onClick={onClick}
+        to={link.path}
+        className="group relative flex items-center gap-2.5 font-semibold rounded-sm py-2  text-dark_color duration-300 ease-in-out"
+      >
+        <img src={link.icon} className="w-6 h-6" alt="" />
+        {link.label}
+      </NavLink>
+    </li>
   )
 }
 

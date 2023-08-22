@@ -36,16 +36,16 @@ const UploadDocument = () => {
           <div className="flex items-center justify-center w-full">
             <label
               htmlFor="dropzone-file"
-              className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100"
+              className="flex flex-col items-center justify-center w-full h-64 border-2 border-border_color border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100"
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <p className="text-sm text-black_color font-bold tracking-[0.7px]">
+                <p className="text-sm text-black_color font-bold mb-5 tracking-[0.7px]">
                   Click to add a file
                 </p>
-                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                <p className="mb-1 text-sm text-black_color">
                   Supported file types
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-black_color">
                   PDF, DOC, XLS, PNG, jPEG, DOCS, PPT
                 </p>
               </div>
@@ -189,29 +189,15 @@ const UploadDocument = () => {
                     Document type:
                   </label>
                 </div>
-                <div className="relative">
+                <div className="">
                   <select
                     type="text"
-                    className="appearance-none rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
+                    className="pr-20 rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
                   >
                     <option value=""></option>
                     <option value="">Document 1</option>
                     <option value="">Document 2</option>
                   </select>
-                  <div className="absolute flex transform -translate-y-1/2 right-4 top-1/2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path
-                        d="M7.99996 10L4.66663 6.68333H11.3333L7.99996 10Z"
-                        fill="black"
-                      />
-                    </svg>
-                  </div>
                 </div>
               </div>
               <div>
@@ -220,29 +206,15 @@ const UploadDocument = () => {
                     Select department:
                   </label>
                 </div>
-                <div className="relative">
+                <div className="">
                   <select
                     type="text"
-                    className="appearance-none rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
+                    className=" rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
                   >
                     <option value=""></option>
                     <option value="">Department 1</option>
                     <option value="">Department 2</option>
                   </select>
-                  <div className="absolute flex transform -translate-y-1/2 right-4 top-1/2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path
-                        d="M7.99996 10L4.66663 6.68333H11.3333L7.99996 10Z"
-                        fill="black"
-                      />
-                    </svg>
-                  </div>
                 </div>
               </div>
             </div>
@@ -254,29 +226,15 @@ const UploadDocument = () => {
                     Select Unit:
                   </label>
                 </div>
-                <div className="relative">
+                <div className="">
                   <select
                     type="text"
-                    className="appearance-none rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
+                    className=" rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
                   >
                     <option value=""></option>
                     <option value="">Unit 1</option>
                     <option value="">Unit 2</option>
                   </select>
-                  <div className="absolute flex transform -translate-y-1/2 right-4 top-1/2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path
-                        d="M7.99996 10L4.66663 6.68333H11.3333L7.99996 10Z"
-                        fill="black"
-                      />
-                    </svg>
-                  </div>
                 </div>
               </div>
               <div>
@@ -309,27 +267,12 @@ const UploadDocument = () => {
                     Date:
                   </label>
                 </div>
-                <div className="relative">
+                <div className="">
                   <input
                     //   Datepicker
                     type="date"
                     className="rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
                   />
-
-                  <div className="absolute flex transform -translate-y-1/2 right-4 top-1/2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path
-                        d="M7.99996 10L4.66663 6.68333H11.3333L7.99996 10Z"
-                        fill="black"
-                      />
-                    </svg>
-                  </div>
                 </div>
               </div>
             </div>
