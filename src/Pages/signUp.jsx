@@ -48,62 +48,62 @@ const SignUp = ({ onLogin }) => {
             </Link>
           </div>
           <div>
-            <form
-              onSubmit={handleSubmit}
-              className="grid grid-cols-1 text-left md:grid-cols-2 gap-x-5 gap-y-5 "
-            >
-              <div>
-                <label htmlFor="" className="text-xs font-semibold">
-                  First Name:
-                </label>
-                <input
-                  type="text"
-                  className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
-                  id="firstName"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                />
+            <form onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 text-left md:grid-cols-2 gap-x-5 gap-y-5 ">
+                <div>
+                  <label htmlFor="" className="text-xs font-semibold">
+                    First Name:
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
+                    id="firstName"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="" className="text-xs font-semibold">
+                    Last Name:
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
+                    id="lastName"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="" className="text-xs font-semibold">
+                    Email Address:
+                  </label>
+                  <input
+                    type="email"
+                    className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="" className="text-xs font-semibold">
+                    Password:
+                  </label>
+                  <input
+                    type="password"
+                    className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="" className="text-xs font-semibold">
-                  Last Name:
-                </label>
-                <input
-                  type="text"
-                  className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="" className="text-xs font-semibold">
-                  Email Address:
-                </label>
-                <input
-                  type="email"
-                  className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="" className="text-xs font-semibold">
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
-                  id="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                />
-              </div>
+
               <div className="flex items-center justify-between w-full">
                 <Link to="/layout">
                   <button

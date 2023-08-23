@@ -14,6 +14,9 @@ const Layout = () => {
       <div className="flex h-screen overflow-hidden">
         {/* <!-- ===== Sidebar Start ===== --> */}
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        {/* {sidebarOpen ? (
+          <div className="bg-transparent/30 w-screen h-screen"></div>
+        ) : null} */}
         {/* <!-- ===== Sidebar End ===== --> */}
 
         {/* <!-- ===== Content Area Start ===== --> */}

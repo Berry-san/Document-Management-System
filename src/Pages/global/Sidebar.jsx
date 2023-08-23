@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 import logo from '../../assets/svgs/logo.svg'
 import leftArrow from '../../assets/svgs/leftArrow.svg'
+import logout from '../../assets/svgs/logout.svg'
 import { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { DASHBOARD_SIDEBAR_LINKS } from '../lib/constants/navigation'
+import Logout from '../logout'
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const trigger = useRef(null)
@@ -93,6 +95,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   onClick={() => setSidebarOpen(!sidebarOpen)}
                 />
               ))}
+              <li className="group relative flex items-center gap-2.5 font-semibold rounded-sm py-2  text-dark_color duration-300 ease-in-out">
+                <img src={logout} className="w-6 h-6" alt="" />
+                <Logout />
+              </li>
             </ul>
           </div>
         </nav>
