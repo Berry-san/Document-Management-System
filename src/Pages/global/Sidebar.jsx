@@ -3,7 +3,7 @@ import logo from '../../assets/svgs/logo.svg'
 import leftArrow from '../../assets/svgs/leftArrow.svg'
 import { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import data from '../lib/constants/navigation'
+import { DASHBOARD_SIDEBAR_LINKS } from '../lib/constants/navigation'
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const trigger = useRef(null)
@@ -86,7 +86,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               {/* Menu Item Dashboard */}
 
               {/* Menu Item Dashboard */}
-              {data.map((link) => (
+              {DASHBOARD_SIDEBAR_LINKS.map((link) => (
                 <SidebarLinks
                   key={link.key}
                   link={link}
@@ -114,7 +114,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 }
 
 function SidebarLinks({ link, onClick }) {
-  // const { pathname } = useLocation()
   return (
     <li>
       <NavLink

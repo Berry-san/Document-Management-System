@@ -8,7 +8,7 @@ import documents from '../../../assets/svgs/documents.svg'
 import departments from '../../../assets/svgs/departments.svg'
 import dashboard from '../../../assets/svgs/dashboard.svg'
 
-const DASHBOARD_SIDEBAR_LINKS = [
+export const DASHBOARD_SIDEBAR_LINKS = [
   {
     key: 'dashboard',
     label: 'Dashboard',
@@ -47,4 +47,35 @@ const DASHBOARD_SIDEBAR_LINKS = [
   },
 ]
 
-export default DASHBOARD_SIDEBAR_LINKS
+export const DEPARTMENT_LINKS = [
+  {
+    key: 'sales',
+    label: 'Sales',
+    path: 'sales',
+  },
+  {
+    key: 'marketing',
+    label: 'Marketing',
+    path: 'marketing',
+  },
+  {
+    key: 'technical',
+    label: 'Technical',
+    path: 'technical',
+  },
+  {
+    key: 'product',
+    label: 'Product',
+    path: 'product',
+  },
+  {
+    key: 'finance',
+    label: 'Finance',
+    path: 'finance',
+  },
+  {
+    key: 'welfare',
+    label: 'Welfare',
+    path: 'welfare',
+  },
+]

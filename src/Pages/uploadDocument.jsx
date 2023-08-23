@@ -56,6 +56,7 @@ const UploadDocument = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('Form Data:', formData)
+    setFormData(initialFormData)
   }
 
   return (
@@ -358,7 +359,7 @@ const UploadDocument = () => {
                 Phone Number
               </label>
               <input
-                type="text"
+                type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
@@ -377,7 +378,7 @@ const UploadDocument = () => {
                 className="rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
               />
             </div>
-            <div className="col-span-2 md:col-span-1">
+            <div className="grid col-span-2 md:col-span-1">
               <label htmlFor="" className="text-xs font-semibold">
                 Date
               </label>

@@ -8,7 +8,7 @@ import Dashboard from './Pages/dashboard'
 import CreateUser from './Pages/CreateUser'
 import DocumentOwners from './Pages/documentOwners'
 import UploadDocument from './Pages/uploadDocument'
-// import Departments from './Pages/departments'
+import Departments from './Pages/departments'
 import Documents from './Pages/documents'
 
 import { useState } from 'react'
@@ -40,6 +40,7 @@ function App() {
         <Route path="createUser" element={<CreateUser />} />
         <Route path="documentOwners" element={<DocumentOwners />} />
         <Route path="uploadDocument" element={<UploadDocument />} />
+        <Route path="departments" element={<Departments />} />
         <Route path="documents" element={<Documents />} />
       </Route>
       <Route index element={<Navigate to="/login" />} />
