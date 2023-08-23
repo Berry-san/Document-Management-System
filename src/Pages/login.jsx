@@ -3,20 +3,40 @@ import { Link } from 'react-router-dom'
 import loginLogo from '../assets/images/loginLogo.svg'
 import { useState } from 'react'
 function Login({ onLogin }) {
-  const [email, setEmail] = useState('hello')
-  const [password, setPassword] = useState('')
+  // const [email, setEmail] = useState('hello')
+  // const [password, setPassword] = useState('')
 
-  const handleLoginClick = () => {
-    // Simulate a login action
-    onLogin()
-    console.log(email, password)
+  const initialFormData = {
+    email: '',
+    password: '',
+  }
+
+  const [formData, setFormData] = useState(initialFormData)
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    console.log(email, password)
+    console.log('Form Data:', formData)
+    setFormData(initialFormData)
+    onLogin()
   }
+
+  const handleLoginClick = () => {
+    onLogin()
+  }
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   onLogin()
+  //   console.log(email, password)
+  // }
 
   return (
     <div className="flex items-center justify-center h-screen bg-dull_white">
@@ -26,7 +46,7 @@ function Login({ onLogin }) {
         </div>
         <div className="px-10 py-6">
           <div className="flex items-center justify-between mb-5 ">
-            <h4 className="text-sm font-semibold">User Registration</h4>
+            <h4 className="text-sm font-semibold">Sign In</h4>
             <Link to="/signUp">
               <span className="text-xs font-semibold text-black_color">
                 User registration
@@ -34,41 +54,40 @@ function Login({ onLogin }) {
             </Link>
           </div>
           <div>
-            <form
-              onSubmit={handleSubmit}
-              className="grid grid-cols-1 text-left md:grid-cols-2 gap-x-5 gap-y-5 "
-            >
-              <div>
-                <label htmlFor="" className="text-xs font-semibold">
-                  Email Address:
-                </label>
-                <input
-                  type="text"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value)
-                  }}
-                  className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
-                  required
-                />
+            <form onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 text-left md:grid-cols-2 gap-x-5 gap-y-5 ">
+                <div>
+                  <label htmlFor="" className="text-xs font-semibold">
+                    Email Address:
+                  </label>
+                  <input
+                    type="text"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="" className="text-xs font-semibold">
+                    Password:
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
+                    required
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="" className="text-xs font-semibold">
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value)
-                  }}
-                  className="w-full bg-[#f4f4f4] px-5 py-3 focus:outline-none rounded-md"
-                  required
-                />
-              </div>
+
               <Link to="/layout">
                 <button
                   className="px-4 py-3 mt-5 text-xs font-semibold rounded bg-green text-black_color"
+                  type="submit"
                   onClick={handleLoginClick}
                 >
                   Sign In
@@ -79,20 +98,6 @@ function Login({ onLogin }) {
         </div>
       </div>
     </div>
-
-    // <div>
-    //   <h2>Login Page</h2>
-    //   <Link to="/signUp">
-    //     <button className="px-4 py-3 bg-green" onClick={handleLoginClick}>
-    //       Sign Up
-    //     </button>
-    //   </Link>
-    //   <Link to="/layout">
-    //     <button className="px-4 py-3 bg-green" onClick={handleLoginClick}>
-    //       Login
-    //     </button>
-    //   </Link>
-    // </div>
   )
 }
 

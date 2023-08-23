@@ -32,7 +32,7 @@ const SignUp = ({ onLogin }) => {
 
   return (
     <div className="flex items-center justify-center h-screen bg-dull_white">
-      <div className="flex flex-col items-center justify-center  bg-[#fff] text-dark_color border border-dull_white max-w-xl mx-auto rounded-md">
+      <div className="flex flex-col items-center justify-center bg-[#fff] text-dark_color border border-dull_white max-w-xl mx-auto rounded-md">
         <div className="flex items-end justify-start w-full px-10 py-6 bg-white border-b border-slate-400">
           <img src={loginLogo} alt="" />
         </div>

@@ -1,16 +1,66 @@
 import playGif from '../assets/svgs/play.gif'
+import { useState } from 'react'
 // import Datepicker from 'flowbite-datepicker/Datepicker'
 import { useNavigate } from 'react-router-dom'
 import back from '../assets/svgs/back.svg'
+import close from '../assets/svgs/close.svg'
+import uploadedFile from '../assets/svgs/uploadedFile.svg'
 
 const UploadDocument = () => {
   const navigate = useNavigate()
   const goBack = () => {
     navigate(-1)
   }
+
+  const [selectedFiles, setSelectedFiles] = useState(null)
+  const [areFilesSelected, setAreFilesSelected] = useState(false)
+
+  const handleFileChange = (e) => {
+    const filesArray = Array.from(e.target.files)
+    setSelectedFiles(filesArray)
+    setAreFilesSelected(true)
+  }
+
+  const handleUploadClick = () => {
+    if (selectedFiles.length === 0) {
+      return
+    }
+
+    const data = new FormData()
+    selectedFiles.forEach((file, index) => {
+      data.append(`file-${index}`, file)
+    })
+  }
+
+  const initialFormData = {
+    docOwner: '',
+    docType: 'option1',
+    department: 'option1',
+    unit: 'option1',
+    phone: '',
+    date: '',
+    email: '',
+    purpose: '',
+  }
+
+  const [formData, setFormData] = useState(initialFormData)
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('Form Data:', formData)
+  }
+
   return (
     <>
-      {/* pb-7 sm:pb-5 lg:pb-5 */}
+      {/* pb-7 sm:pb-5 md:pb-5 */}
       <div className="flex items-center justify-between w-full mb-5">
         <div className="flex items-center space-x-5">
           <img
@@ -31,10 +81,14 @@ const UploadDocument = () => {
           </a>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-12 pb-7">
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 gap-4 md:grid-cols-12 pb-7"
+      >
         <div className="col-span-7 md:col-span-5">
           <div className="flex items-center justify-center w-full">
             <label
+              onClick={handleUploadClick}
               htmlFor="dropzone-file"
               className="flex flex-col items-center justify-center w-full h-64 border-2 border-border_color border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100"
             >
@@ -49,126 +103,48 @@ const UploadDocument = () => {
                   PDF, DOC, XLS, PNG, jPEG, DOCS, PPT
                 </p>
               </div>
-              <input id="dropzone-file" type="file" className="hidden" />
+              <input
+                id="dropzone-file"
+                type="file"
+                className="hidden"
+                onChange={handleFileChange}
+                // multiple
+              />
             </label>
           </div>
 
-          <div className="flex justify-between px-5 py-2 mt-4 mb-3 rounded bg-dull_white">
-            <div className="flex items-center gap-3">
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                >
-                  <path
-                    d="M6.64587 14.7917H13.3542V13.5417H6.64587V14.7917ZM6.64587 11.25H13.3542V10H6.64587V11.25ZM4.58337 18.3333C4.25004 18.3333 3.95837 18.2083 3.70837 17.9583C3.45837 17.7083 3.33337 17.4167 3.33337 17.0833V2.91666C3.33337 2.58333 3.45837 2.29166 3.70837 2.04166C3.95837 1.79166 4.25004 1.66666 4.58337 1.66666H12.1042L16.6667 6.22916V17.0833C16.6667 17.4167 16.5417 17.7083 16.2917 17.9583C16.0417 18.2083 15.75 18.3333 15.4167 18.3333H4.58337ZM11.4792 6.79166H15.4167L11.4792 2.91666V6.79166Z"
-                    fill="#393E46"
-                  />
-                </svg>
-              </span>
-              <span className="text-xs font-semibold text-black_color">
-                File1_name.pdf
-              </span>
-            </div>
-            <div>
-              <button className="pt-1">
-                <svg
-                  className="hover:scale-125"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M8.00047 7.05767L11.3003 3.75781L12.2431 4.70062L8.94327 8.00047L12.2431 11.3003L11.3003 12.2431L8.00047 8.94327L4.70062 12.2431L3.75781 11.3003L7.05767 8.00047L3.75781 4.70062L4.70062 3.75781L8.00047 7.05767Z"
-                    fill="#393E46"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div className="flex justify-between px-5 py-2 mb-3 rounded bg-dull_white">
-            <div className="flex items-center gap-3">
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                >
-                  <path
-                    d="M6.64587 14.7917H13.3542V13.5417H6.64587V14.7917ZM6.64587 11.25H13.3542V10H6.64587V11.25ZM4.58337 18.3333C4.25004 18.3333 3.95837 18.2083 3.70837 17.9583C3.45837 17.7083 3.33337 17.4167 3.33337 17.0833V2.91666C3.33337 2.58333 3.45837 2.29166 3.70837 2.04166C3.95837 1.79166 4.25004 1.66666 4.58337 1.66666H12.1042L16.6667 6.22916V17.0833C16.6667 17.4167 16.5417 17.7083 16.2917 17.9583C16.0417 18.2083 15.75 18.3333 15.4167 18.3333H4.58337ZM11.4792 6.79166H15.4167L11.4792 2.91666V6.79166Z"
-                    fill="#393E46"
-                  />
-                </svg>
-              </span>
-              <span className="text-xs font-semibold text-black_color">
-                File2_name.pdf
-              </span>
-            </div>
-            <div>
-              <button className="pt-1">
-                <svg
-                  className="hover:scale-125"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M8.00047 7.05767L11.3003 3.75781L12.2431 4.70062L8.94327 8.00047L12.2431 11.3003L11.3003 12.2431L8.00047 8.94327L4.70062 12.2431L3.75781 11.3003L7.05767 8.00047L3.75781 4.70062L4.70062 3.75781L8.00047 7.05767Z"
-                    fill="#393E46"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div className="flex justify-between px-5 py-2 mb-3 rounded bg-dull_white">
-            <div className="flex items-center gap-3">
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                >
-                  <path
-                    d="M6.64587 14.7917H13.3542V13.5417H6.64587V14.7917ZM6.64587 11.25H13.3542V10H6.64587V11.25ZM4.58337 18.3333C4.25004 18.3333 3.95837 18.2083 3.70837 17.9583C3.45837 17.7083 3.33337 17.4167 3.33337 17.0833V2.91666C3.33337 2.58333 3.45837 2.29166 3.70837 2.04166C3.95837 1.79166 4.25004 1.66666 4.58337 1.66666H12.1042L16.6667 6.22916V17.0833C16.6667 17.4167 16.5417 17.7083 16.2917 17.9583C16.0417 18.2083 15.75 18.3333 15.4167 18.3333H4.58337ZM11.4792 6.79166H15.4167L11.4792 2.91666V6.79166Z"
-                    fill="#393E46"
-                  />
-                </svg>
-              </span>
-              <span className="text-xs font-semibold text-black_color">
-                File2_name.pdf
-              </span>
-            </div>
-            <div>
-              <button className="pt-1">
-                <svg
-                  className="hover:scale-125"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M8.00047 7.05767L11.3003 3.75781L12.2431 4.70062L8.94327 8.00047L12.2431 11.3003L11.3003 12.2431L8.00047 8.94327L4.70062 12.2431L3.75781 11.3003L7.05767 8.00047L3.75781 4.70062L4.70062 3.75781L8.00047 7.05767Z"
-                    fill="#393E46"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
+          {areFilesSelected && (
+            <ul className="mt-5">
+              {selectedFiles.map((file, index) => (
+                <>
+                  <li
+                    key={index}
+                    className="flex justify-between px-5 py-2 mb-3 rounded bg-dull_white"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span>
+                        <img
+                          src={uploadedFile}
+                          className="w-5 h-5"
+                          alt="file"
+                        />
+                      </span>
+                      <span className="text-xs font-semibold text-black_color">
+                        {file.name}
+                      </span>
+                    </div>
+                    <div>
+                      <button className="pt-1">
+                        <img src={close} className="w-4 h-4" alt="" />
+                      </button>
+                    </div>
+                  </li>
+                </>
+              ))}
+            </ul>
+          )}
         </div>
-        <div className="col-span-7">
+        {/* <div className="col-span-7">
           <div className="px-5 py-4 border rounded border-border_color">
             <div className="mb-3">
               <div className="mb-1">
@@ -178,6 +154,9 @@ const UploadDocument = () => {
               </div>
               <input
                 type="text"
+                name="docOwner"
+                value={formData.docOwner}
+                onChange={handleInputChange}
                 className="rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
               />
             </div>
@@ -191,12 +170,14 @@ const UploadDocument = () => {
                 </div>
                 <div className="">
                   <select
-                    type="text"
-                    className="pr-20 rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
+                    value={formData.department}
+                    name="department"
+                    onChange={handleInputChange}
+                    className=" rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
                   >
-                    <option value=""></option>
-                    <option value="">Document 1</option>
-                    <option value="">Document 2</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
                   </select>
                 </div>
               </div>
@@ -208,12 +189,14 @@ const UploadDocument = () => {
                 </div>
                 <div className="">
                   <select
-                    type="text"
+                    value={formData.department}
+                    name="department"
+                    onChange={handleInputChange}
                     className=" rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
                   >
-                    <option value=""></option>
-                    <option value="">Department 1</option>
-                    <option value="">Department 2</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
                   </select>
                 </div>
               </div>
@@ -229,11 +212,14 @@ const UploadDocument = () => {
                 <div className="">
                   <select
                     type="text"
+                    value={formData.unit}
+                    name="unit"
+                    onChange={handleInputChange}
                     className=" rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
                   >
-                    <option value=""></option>
-                    <option value="">Unit 1</option>
-                    <option value="">Unit 2</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
                   </select>
                 </div>
               </div>
@@ -244,7 +230,10 @@ const UploadDocument = () => {
                   </label>
                 </div>
                 <input
-                  type="text"
+                  type="tel"
+                  value={formData.phone}
+                  name="phone"
+                  onChange={handleInputChange}
                   className="rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
                 />
               </div>
@@ -258,6 +247,9 @@ const UploadDocument = () => {
                 </div>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   className="rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
                 />
               </div>
@@ -271,6 +263,9 @@ const UploadDocument = () => {
                   <input
                     //   Datepicker
                     type="date"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleInputChange}
                     className="rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
                   />
                 </div>
@@ -284,16 +279,137 @@ const UploadDocument = () => {
               </div>
               <textarea
                 rows="3"
+                name="purpose"
+                value={formData.purpose}
+                onChange={handleInputChange}
                 className="rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
               ></textarea>
             </div>
-            <button className="px-4 py-3 text-xs font-semibold rounded bg-green text-black_color hover:bg-black_color hover:text-white">
+            <button
+              type="submit"
+              className="px-4 py-3 text-xs font-semibold rounded bg-green text-black_color hover:bg-black_color hover:text-white"
+            >
               {' '}
               Save document
             </button>
           </div>
+        </div> */}
+        <div className="col-span-7">
+          <div className="px-5 py-4 grid grid-cols-2 border rounded gap-x-4 gap-y-4  border-border_color">
+            <div className="col-span-2">
+              <label htmlFor="" className="text-xs font-semibold">
+                Document Owner
+              </label>
+              <input
+                type="name"
+                name="docOwner"
+                value={formData.docOwner}
+                onChange={handleInputChange}
+                className="rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
+              />
+            </div>
+            <div className="col-span-2 md:col-span-1">
+              <label htmlFor="" className="text-xs font-semibold">
+                Document Type
+              </label>
+              <select
+                value={formData.docType}
+                name="docType"
+                onChange={handleInputChange}
+                className=" rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
+              >
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+              </select>
+            </div>
+            <div className="col-span-2 md:col-span-1">
+              <label htmlFor="" className="text-xs font-semibold">
+                Select Department
+              </label>
+              <select
+                value={formData.department}
+                name="department"
+                onChange={handleInputChange}
+                className=" rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
+              >
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+              </select>
+            </div>
+            <div className="col-span-2 md:col-span-1">
+              <label htmlFor="" className="text-xs font-semibold">
+                Select Unit
+              </label>
+              <select
+                value={formData.unit}
+                name="unit"
+                onChange={handleInputChange}
+                className=" rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
+              >
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+              </select>
+            </div>
+            <div className="col-span-2 md:col-span-1">
+              <label htmlFor="" className="text-xs font-semibold">
+                Phone Number
+              </label>
+              <input
+                type="text"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className="rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
+              />
+            </div>
+            <div className="col-span-2 md:col-span-1">
+              <label htmlFor="" className="text-xs font-semibold">
+                Email Address
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
+              />
+            </div>
+            <div className="col-span-2 md:col-span-1">
+              <label htmlFor="" className="text-xs font-semibold">
+                Date
+              </label>
+              <input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleInputChange}
+                className="rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
+              />
+            </div>
+            <div className="col-span-2">
+              <label htmlFor="" className="text-xs font-semibold">
+                Purpose
+              </label>
+              <textarea
+                rows="3"
+                name="purpose"
+                value={formData.purpose}
+                onChange={handleInputChange}
+                className="rounded text-sm font-semibold tracking-[0.6px] text-black_color bg-dull_white w-full p-3 focus:bg-white focus:outline-black_color"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="px-4 w-36 py-3 text-xs font-semibold rounded bg-green text-black_color hover:bg-black_color hover:text-white"
+            >
+              Save document
+            </button>
+          </div>
         </div>
-      </div>
+      </form>
     </>
   )
 }

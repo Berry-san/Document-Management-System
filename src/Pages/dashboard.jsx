@@ -7,7 +7,7 @@ import man from '../assets/svgs/man.svg'
 import rightArrow from '../assets/svgs/rightArrow.svg'
 import { Link } from 'react-router-dom'
 
-const Dashboard = ({ onLogin }) => {
+const Dashboard = () => {
   return (
     <>
       <div>
