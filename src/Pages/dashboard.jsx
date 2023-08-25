@@ -79,7 +79,7 @@ const Dashboard = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 pt-[40px]">
-          <div className="flex col-span-7 rounded bg-green/50 pe-5">
+          <div className="flex col-span-7 rounded bg-green/50 px-5">
             <div className="flex-none hidden md:block lg:block">
               <img className="" src={file} />
             </div>
